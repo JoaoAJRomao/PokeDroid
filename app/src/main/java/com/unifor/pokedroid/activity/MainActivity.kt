@@ -37,14 +37,13 @@ class MainActivity : AppCompatActivity() {
         mainHeight=findViewById(R.id.main_height)
         mainAbilities=findViewById(R.id.main_abilities)
 
-
         pokeapiService = RetrofitInitializer.getPokeapiService()
 
         val pokemon = pokeapiService.getAllPokemons()
+        val pokemonById = pokeapiService.getPokemonById(1)
 
-        pokemon.enqueue(pokemonCallbackHandler)
-
-
+//        pokemon.enqueue(pokemonCallbackHandler)
+        pokemonById.enqueue(pokemonCallbackHandler)
     }
 
     private val pokemonCallbackHandler = object:Callback<Pokemon>{
@@ -62,13 +61,8 @@ class MainActivity : AppCompatActivity() {
             mainBaseExperience.text=response.body()?.baseExperience.toString()
             mainHeight.text=response.body()?.height.toString()
             mainAbilities.text=response.body()?.abilities.toString()
-            var string = mainCodeId.toString()+" \r\n "+
-                    mainId.toString()+"\r\n"+
-                    mainName.toString()+"\r\n"+
-                    mainBaseExperience.toString()+"\r\n"+
-                    mainHeight.toString()+"\r\n"+
-                    mainAbilities.toString()+"\r\n"
-            Log.i("REST",string)
+
+            Log.i("REST",response.body().toString())
         }
 
     }
