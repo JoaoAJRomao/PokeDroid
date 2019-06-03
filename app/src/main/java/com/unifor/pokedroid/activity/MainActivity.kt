@@ -18,14 +18,25 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var pokeapiService: PokeapiService
 
-    private lateinit var textView:TextView
+    private lateinit var mainCodeId:TextView
+    private lateinit var mainId:TextView
+    private lateinit var mainName:TextView
+    private lateinit var mainBaseExperience:TextView
+    private lateinit var mainHeight:TextView
+    private lateinit var mainAbilities:TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        textView=findViewById(R.id.main_textView)
+        mainCodeId=findViewById(R.id.main_codeId)
+        mainId=findViewById(R.id.main_id)
+        mainName=findViewById(R.id.main_name)
+        mainBaseExperience=findViewById(R.id.main_baseExperience)
+        mainHeight=findViewById(R.id.main_height)
+        mainAbilities=findViewById(R.id.main_abilities)
+
 
         pokeapiService = RetrofitInitializer.getPokeapiService()
 
@@ -44,7 +55,20 @@ class MainActivity : AppCompatActivity() {
         override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
             Log.i("APP","${response.code()}")
             Log.i("APP","${response.body()}")
-            textView.setText("${response.body()}").toString()
+//            textView.setText("${response.body()}").toString()
+            mainCodeId.text=response.code().toString()
+            mainId.text=response.body()?.id.toString()
+            mainName.text=response.body()?.name.toString()
+            mainBaseExperience.text=response.body()?.baseExperience.toString()
+            mainHeight.text=response.body()?.height.toString()
+            mainAbilities.text=response.body()?.abilities.toString()
+            var string = mainCodeId.toString()+" \r\n "+
+                    mainId.toString()+"\r\n"+
+                    mainName.toString()+"\r\n"+
+                    mainBaseExperience.toString()+"\r\n"+
+                    mainHeight.toString()+"\r\n"+
+                    mainAbilities.toString()+"\r\n"
+            Log.i("REST",string)
         }
 
     }
