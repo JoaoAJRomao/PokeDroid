@@ -1,12 +1,14 @@
 package com.unifor.pokedroid.model
 
-import com.google.gson.annotations.SerializedName
-
-data class Pokemon(
-    val id: Int,
-    val name: String,
-    @SerializedName("base_experience")
-    val baseExperience: Int,
-    val height: Int,
-    val abilities: List<Ability>
+data class Pokemon (
+    val count:Int,
+    val next:String,
+    val previous:String,
+    val results: List<GetListPokemon>
 )
+
+data class GetListPokemon (
+    val name: String,
+    val url:String
+)
+
