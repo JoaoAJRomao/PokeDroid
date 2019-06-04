@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity() {
         val pokemon = pokeapiService.getAllPokemons()
         val pokemonById = pokeapiService.getPokemonById(1)
 
-//        pokemon.enqueue(pokemonCallbackHandler)
-        pokemonById.enqueue(pokemonCallbackHandler)
+        pokemon.enqueue(pokemonCallbackHandler)
+//        pokemonById.enqueue(pokemonCallbackHandler)
     }
 
     private val pokemonCallbackHandler = object:Callback<Pokemon>{
