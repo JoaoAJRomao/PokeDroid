@@ -11,7 +11,7 @@ import com.unifor.pokedroid.R
 import com.unifor.pokedroid.model.GetListPokemon
 import com.unifor.pokedroid.model.Named
 
-//O pokemonAdapter deve receber a lista que esta dentro de Named( val results: List<GetListPokemon>)
+//O pokemonAdapter deve receber a lista que esta dentro de Named( val listaDeRetorno: List<GetListPokemon>)
 class PokemonAdapter(val context:Context, val lista:List<GetListPokemon>): RecyclerView.Adapter<PokemonAdapter.NamedViewHolder>(){
 
     private var layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater

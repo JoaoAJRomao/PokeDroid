@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">PokeDroid</string>
-    <string name="TextImage">textImage</string>
-    <string name="nomePokemon">NomePokemon</string>
+
+    <string name="pokedroid">pokedroid</string>
 </resources>

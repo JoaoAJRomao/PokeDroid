@@ -6,7 +6,8 @@ data class Named(
     val count: Int,
     val next: String,
     val previous: String,
-    val results: List<GetListPokemon>
+    @SerializedName("results")
+    val listaDeRetorno: List<GetListPokemon>
 )
 
 data class GetListPokemon(
@@ -22,19 +23,19 @@ data class Pokemon(
     val weight: Int,
     val abilities: List<PokemonAbility>,
     val sprites: PokemonSprites,
-    val types:List<PokemonType>
+    val types: List<PokemonType>
 )
 
-data class PokemonAbility (
+data class PokemonAbility(
     @SerializedName("is_hidden")
     val isHidden: Boolean,
     val slot: Int,
     val ability: Ability
 )
 
-data class Ability (
-    val id:Int,
-    val name:String,
+data class Ability(
+    val id: Int,
+    val name: String,
     @SerializedName("is_main_series")
     val isMainSeries: Boolean,
     val generation: Generation,
@@ -47,12 +48,12 @@ data class Ability (
 
 data class PokemonSprites(
     @SerializedName("front_default")
-    val frontDefault:String
+    val frontDefault: String
 )
 
 data class PokemonType(
-    val slot:String,
-    val type:Type,
+    val slot: String,
+    val type: Type,
     val moves: List<Move>
 )
 
@@ -62,28 +63,28 @@ data class Type(
 )
 
 data class Move(
-    val id:Int,
+    val id: Int,
     val name: String,
-    val accuracy:Int,
+    val accuracy: Int,
     @SerializedName("effect_chance")
     val effectChance: Int,
-    val pp:Int,
+    val pp: Int,
     val power: Int
 )
 
 data class Name(
-    val name:String,
+    val name: String,
     val language: Language
 )
 
 data class Language(
-    val id:Int,
-    val name:String,
+    val id: Int,
+    val name: String,
     val official: Boolean
 )
 
 data class Generation(
-    val id:Int,
-    val name:String,
-    val abilities:List<Ability>
+    val id: Int,
+    val name: String,
+    val abilities: List<Ability>
 )

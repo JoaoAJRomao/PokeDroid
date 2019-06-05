@@ -2,6 +2,7 @@ package com.unifor.pokedroid.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.unifor.pokedroid.R
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         pokemonService = RetrofitConfig.getPokemonService()
+        recyclerView = findViewById(R.id.main_recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+
 
         val listaPokemons = pokemonService.getAllPokemons()
 
@@ -36,11 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         override fun onResponse(call: Call<Named>?, response: Response<Named>?) {
             if (response != null) {
-//                Log.i("onResponse",response.body().results.size.toString())
-//                Log.i("onResponse",response.body().toString())
-//                Log.i("onResponse",response.body()?.results?.get(1).toString())// recupera informações do 2 pokemon da lista
-//                Log.i("onResponse", response.body()?.results?.get(1)?.url)// pega a url especifica
-//                recyclerView.adapter = PokemonAdapter(this,response.body()?.results.)
+                Log.i("onResponse",response.body().toString())
+                recyclerView.adapter = PokemonAdapter(applicationContext,response.body()!!.listaDeRetorno) //Professor, se eu usar "response.body()?.listaDeRetorno", da erro. Pode explica?
+
             } else {
                 Log.i("onResponse", "response é null")
             }
