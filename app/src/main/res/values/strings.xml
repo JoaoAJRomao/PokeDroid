@@ -1,9 +1,5 @@
 <resources>
     <string name="app_name">PokeDroid</string>
-    <string name="codebody">Code body:</string>
-    <string name="id">ID:</string>
-    <string name="pokemon">Pokemon</string>
-    <string name="baseexperience">Base Experience</string>
-    <string name="height">Height</string>
-    <string name="abilities">Abilities</string>
+    <string name="TextImage">textImage</string>
+    <string name="nomePokemon">NomePokemon</string>
 </resources>

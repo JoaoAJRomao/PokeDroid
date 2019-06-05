@@ -4,65 +4,46 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.widget.TextView
 import com.unifor.pokedroid.R
-import com.unifor.pokedroid.model.Pokemon
-import com.unifor.pokedroid.service.PokeapiService
-import com.unifor.pokedroid.service.RetrofitInitializer
+import com.unifor.pokedroid.adapter.PokemonAdapter
+import com.unifor.pokedroid.model.Named
+import com.unifor.pokedroid.service.PokemonService
+import com.unifor.pokedroid.service.RetrofitConfig
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var pokemonService: PokemonService
     private lateinit var recyclerView: RecyclerView
-    private lateinit var pokeapiService: PokeapiService
-
-    private lateinit var mainCodeId:TextView
-    private lateinit var mainId:TextView
-    private lateinit var mainName:TextView
-    private lateinit var mainBaseExperience:TextView
-    private lateinit var mainHeight:TextView
-    private lateinit var mainAbilities:TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainCodeId=findViewById(R.id.main_codeId)
-        mainId=findViewById(R.id.main_id)
-        mainName=findViewById(R.id.main_name)
-        mainBaseExperience=findViewById(R.id.main_baseExperience)
-        mainHeight=findViewById(R.id.main_height)
-        mainAbilities=findViewById(R.id.main_abilities)
+        pokemonService = RetrofitConfig.getPokemonService()
 
-        pokeapiService = RetrofitInitializer.getPokeapiService()
+        val listaPokemons = pokemonService.getAllPokemons()
 
-        val pokemon = pokeapiService.getAllPokemons()
-        val pokemonById = pokeapiService.getPokemonById(1)
-
-        pokemon.enqueue(pokemonCallbackHandler)
-//        pokemonById.enqueue(pokemonCallbackHandler)
+        listaPokemons.enqueue(pokemonCallbackHandler)
     }
 
-    private val pokemonCallbackHandler = object:Callback<Pokemon>{
-        override fun onFailure(call: Call<Pokemon>, t: Throwable) {
-            Log.i("APP","Nao deu certo")
+    private val pokemonCallbackHandler = object : Callback<Named> {
+        override fun onFailure(call: Call<Named>?, t: Throwable?) {
+            Log.i("onResponse", "Falha no callback handler")
         }
 
-        override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
-            Log.i("APP","${response.code()}")
-            Log.i("APP","${response.body()}")
-//            textView.setText("${response.body()}").toString()
-            mainCodeId.text=response.code().toString()
-            mainId.text=response.body()?.id.toString()
-            mainName.text=response.body()?.name.toString()
-            mainBaseExperience.text=response.body()?.baseExperience.toString()
-            mainHeight.text=response.body()?.height.toString()
-            mainAbilities.text=response.body()?.abilities.toString()
-
-            Log.i("REST",response.body().toString())
+        override fun onResponse(call: Call<Named>?, response: Response<Named>?) {
+            if (response != null) {
+//                Log.i("onResponse",response.body().results.size.toString())
+//                Log.i("onResponse",response.body().toString())
+//                Log.i("onResponse",response.body()?.results?.get(1).toString())// recupera informações do 2 pokemon da lista
+//                Log.i("onResponse", response.body()?.results?.get(1)?.url)// pega a url especifica
+//                recyclerView.adapter = PokemonAdapter(this,response.body()?.results.)
+            } else {
+                Log.i("onResponse", "response é null")
+            }
         }
 
     }
