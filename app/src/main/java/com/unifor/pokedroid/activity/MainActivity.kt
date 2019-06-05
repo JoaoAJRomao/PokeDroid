@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.unifor.pokedroid.R
 import com.unifor.pokedroid.adapter.PokemonAdapter
+import com.unifor.pokedroid.model.GetListPokemon
 import com.unifor.pokedroid.model.Named
 import com.unifor.pokedroid.service.PokemonService
 import com.unifor.pokedroid.service.RetrofitConfig
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var pokemonService: PokemonService
     private lateinit var recyclerView: RecyclerView
+    private var listaFakePokemons:MutableList<GetListPokemon> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +28,16 @@ class MainActivity : AppCompatActivity() {
         pokemonService = RetrofitConfig.getPokemonService()
         recyclerView = findViewById(R.id.main_recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.adapter = PokemonAdapter(applicationContext,listaFakePokemons)
+
+        criarNomePokemon()
 
 
         val listaPokemons = pokemonService.getAllPokemons()
 
         listaPokemons.enqueue(pokemonCallbackHandler)
+
+        Log.i("DaLista",listaFakePokemons.toString())
     }
 
     private val pokemonCallbackHandler = object : Callback<Named> {
@@ -48,5 +55,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun criarNomePokemon(){
+        var poke:GetListPokemon = GetListPokemon("Nome1","url01")
+        listaFakePokemons.add(poke)
+
+        poke = GetListPokemon("Nome02","url02")
+        listaFakePokemons.add(poke)
     }
 }
