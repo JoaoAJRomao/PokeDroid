@@ -27,6 +27,9 @@ class MainActivity : AppCompatActivity() {
 
         pokemonService = RetrofitConfig.getPokemonService()
         recyclerView = findViewById(R.id.main_recyclerView)
+
+//        recyclerView.addOnScrollListener()
+        //usar biblioteca PICASSO para recuperar a imagem, passando apenas a url
         recyclerView.layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.adapter = PokemonAdapter(applicationContext,listaFakePokemons)
 
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             if (response != null) {
                 Log.i("onResponse",response.body().toString())
                 recyclerView.adapter = PokemonAdapter(applicationContext,response.body()!!.listaDeRetorno) //Professor, se eu usar "response.body()?.listaDeRetorno", da erro. Pode explica?
+//                var vas = response.body().listaDeRetorno.nex
 
             } else {
                 Log.i("onResponse", "response é null")
