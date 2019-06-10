@@ -1,7 +1,7 @@
 package com.unifor.pokedroid.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -25,15 +25,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        pokemonService = RetrofitConfig.getPokemonService()
-        recyclerView = findViewById(R.id.main_recyclerView)
-
-//        recyclerView.addOnScrollListener()
-        //usar biblioteca PICASSO para recuperar a imagem, passando apenas a url
-        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
-        recyclerView.adapter = PokemonAdapter(applicationContext,listaFakePokemons)
-
-        criarNomePokemon()
+        ConfiguracaoInicial()
 
 
         val listaPokemons = pokemonService.getAllPokemons()
@@ -51,8 +43,8 @@ class MainActivity : AppCompatActivity() {
         override fun onResponse(call: Call<Named>?, response: Response<Named>?) {
             if (response != null) {
                 Log.i("onResponse",response.body().toString())
-                recyclerView.adapter = PokemonAdapter(applicationContext,response.body()!!.listaDeRetorno) //Professor, se eu usar "response.body()?.listaDeRetorno", da erro. Pode explica?
-//                var vas = response.body().listaDeRetorno.nex
+                recyclerView.adapter = PokemonAdapter(applicationContext,response.body()!!.listaDeRetorno)
+//                recyclerView.addOnScrollListener(RecyclerView.OnScrollListener)
 
             } else {
                 Log.i("onResponse", "response é null")
@@ -61,11 +53,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun criarNomePokemon(){
-        var poke:GetListPokemon = GetListPokemon("Nome1","url01")
-        listaFakePokemons.add(poke)
+    fun ConfiguracaoInicial(){
+        pokemonService = RetrofitConfig.getPokemonService()
+        recyclerView = findViewById(R.id.main_recyclerView)
 
-        poke = GetListPokemon("Nome02","url02")
-        listaFakePokemons.add(poke)
+//        recyclerView.addOnScrollListener()
+        //usar biblioteca PICASSO para recuperar a imagem, passando apenas a url
+        recyclerView.layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView.adapter = PokemonAdapter(applicationContext,listaFakePokemons)
     }
 }

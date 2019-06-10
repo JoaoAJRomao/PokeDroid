@@ -26,6 +26,11 @@ data class Pokemon(
     val types: List<PokemonType>
 )
 
+data class PokemonSprites(
+    @SerializedName("front_default")
+    val url_frontDefault: String
+)
+
 data class PokemonAbility(
     @SerializedName("is_hidden")
     val isHidden: Boolean,
@@ -46,10 +51,7 @@ data class Ability(
     val effectChanges: AbilityEffectChange*/
 )
 
-data class PokemonSprites(
-    @SerializedName("front_default")
-    val frontDefault: String
-)
+
 
 data class PokemonType(
     val slot: String,
