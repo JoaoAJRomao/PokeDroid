@@ -28,7 +28,7 @@ data class Pokemon(
 
 data class PokemonSprites(
     @SerializedName("front_default")
-    val url_frontDefault: String
+    val urlFrontDefault: String
 )
 
 data class PokemonAbility(
