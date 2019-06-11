@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface PokemonService {
-    @GET("pokemon/") //limit=quantos devem aparecer - offset=a partir de qual aparece(do array, comeca do 1 em diante)
+    @GET("pokemon/?limit=1000") //limit=quantos devem aparecer - offset=a partir de qual aparece(do array, comeca do 1 em diante)
     fun getAllPokemons(): Call<Named>
 
     @GET("pokemon/{id}")
