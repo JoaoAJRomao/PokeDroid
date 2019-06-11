@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.unifor.pokedroid.R
 import com.unifor.pokedroid.model.Named
+import com.unifor.pokedroid.model.Pokemon
 import com.unifor.pokedroid.service.PokemonService
 import com.unifor.pokedroid.service.RetrofitConfig
 import retrofit2.Call
@@ -45,7 +46,21 @@ class MainActivity : AppCompatActivity() {
 //            Log.i("Resultado",response.body()!!.listaDeRetorno[1].url)
             for (i in response.body()!!.listaDeRetorno.indices) {
 //                Log.i("Resultado",response.body()!!.listaDeRetorno[i].url)// mostra a url de cada pokemon, separadamente
-                listaDePokemons.add(response.body()!!.listaDeRetorno[i].url)//manda as urls pro adapter, e lá ele chama o picasso
+//                listaDePokemons.add(response.body()!!.listaDeRetorno[i].url)//manda as urls pro adapter, e lá ele chama o picasso
+                val consultaPokemonIndividualmente = pokemonService.getPokemonByUrl(response.body()!!.listaDeRetorno[i].url)
+                consultaPokemonIndividualmente.enqueue(object: Callback<Pokemon>{
+                    override fun onFailure(call: Call<Pokemon>, t: Throwable) {
+                        Log.i("Resultado","Falha no callback de pokemon individual: "+ t.message)
+                    }
+
+                    override fun onResponse(call: Call<Pokemon>, response2: Response<Pokemon>) {
+
+//                        Log.i("Resultado", "Mensagem do pokemon especifico aqui")
+                        Log.i("Resultado",response2.body().toString()) //retorna null
+
+                    }
+
+                })
             }
         }
 
