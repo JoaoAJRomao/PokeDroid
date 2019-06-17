@@ -3,4 +3,12 @@
     <string name="pokedroid">pokedroid</string>
     <string name="xmlNomePokemon">NomePokemon</string>
     <string name="descricaoImagem">Gato</string>
+    <string name="SegundaTelaNomePokemon">Nome:</string>
+    <string name="SegundaTelaBaseExperiencia">Base:</string>
+    <string name="segundaTela_recebeNome">recebeNomePokemon</string>
+    <string name="segundaTela_recebeExperiencia">recebe Experiencia</string>
+    <string name="segundaTela_recebePeso">Peso:</string>
+    <string name="segundaTela_peso">Recebe Peso</string>
+    <string name="st_altura">Altura:</string>
+    <string name="st_raltura">Recebe altura</string>
 </resources>

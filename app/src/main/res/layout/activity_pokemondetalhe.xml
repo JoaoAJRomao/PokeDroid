@@ -6,12 +6,76 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activity.activity_pokemondetalhe">
-
-    <TextView
-            android:text="TextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" android:id="@+id/segundaTela_textView"
+    <ImageView
+            android:src="@drawable/funnycat"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:id="@+id/segundatela_imageView"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="185dp"/>
+            android:layout_marginTop="16dp" app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+            android:text="@string/SegundaTelaNomePokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/qw"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/segundatela_imageView"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"/>
+    <TextView
+            android:text="@string/SegundaTelaBaseExperiencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/qa"
+            app:layout_constraintStart_toStartOf="@+id/qw"
+            app:layout_constraintEnd_toEndOf="@+id/qw" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/qw"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/st-nome"
+            android:text="@string/segundaTela_recebeNome"
+            app:layout_constraintTop_toTopOf="@+id/qw"
+            app:layout_constraintBottom_toBottomOf="@+id/qw" app:layout_constraintStart_toEndOf="@+id/qw"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/st-base"
+            android:text="@string/segundaTela_recebeExperiencia"
+            app:layout_constraintTop_toTopOf="@+id/qa" app:layout_constraintBottom_toBottomOf="@+id/qa"
+            app:layout_constraintStart_toEndOf="@+id/qa" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+    <TextView
+            android:text="@string/segundaTela_recebePeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6"
+            app:layout_constraintStart_toStartOf="@+id/qa"
+            app:layout_constraintEnd_toEndOf="@+id/qa" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/qa"/>
+    <TextView
+            android:text="@string/segundaTela_peso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/st-peso"
+            app:layout_constraintTop_toTopOf="@+id/textView6" app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintStart_toEndOf="@+id/textView6" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+    <TextView
+            android:text="@string/st_altura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView8"
+            app:layout_constraintStart_toStartOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="@+id/textView6" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"/>
+    <TextView
+            android:text="@string/st_raltura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/st-altura"
+            app:layout_constraintTop_toTopOf="@+id/textView8" app:layout_constraintBottom_toBottomOf="@+id/textView8"
+            app:layout_constraintStart_toEndOf="@+id/textView8" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
 </android.support.constraint.ConstraintLayout>

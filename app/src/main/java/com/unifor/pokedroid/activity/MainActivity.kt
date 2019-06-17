@@ -59,7 +59,8 @@ class MainActivity : AppCompatActivity() {
 
                             val chamaOutra = Intent(this@MainActivity,activity_pokemondetalhe::class.java)
                             chamaOutra.putExtra("uri",response.body()!!.listaDeRetorno[position].url )
-                            Log.i("MainActivity2",response.body()!!.listaDeRetorno[position].url)
+                            chamaOutra.putExtra("posicao",position+1)
+//                            Log.i("MainActivity2",response.body()!!.listaDeRetorno[position].url)
                             startActivity(chamaOutra)
 
                         }
