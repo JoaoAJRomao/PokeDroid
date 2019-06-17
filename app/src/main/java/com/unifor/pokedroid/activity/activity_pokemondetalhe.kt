@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
 import com.unifor.pokedroid.R
+import com.unifor.pokedroid.model.Ability
 import com.unifor.pokedroid.model.Pokemon
 import com.unifor.pokedroid.service.PokemonService
 import com.unifor.pokedroid.service.RetrofitConfig
@@ -32,6 +33,7 @@ class activity_pokemondetalhe : AppCompatActivity() {
         var dados = intent
         pokemonService = RetrofitConfig.getPokemonService()
         val respostaPokemon = pokemonService.getPokemonById(dados.getIntExtra("posicao",1))
+        val respostaPokemonAbility = pokemonService.getPokemonAbilityById(dados.getIntExtra("posicao",1))
 
         imagemPokemon = findViewById(R.id.segundatela_imageView)
         nome = findViewById(R.id.st_nome)
@@ -48,14 +50,22 @@ class activity_pokemondetalhe : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<Pokemon>, response: Response<Pokemon>) {
-                nome.text=response.body()?.name
-                base.text=response.body()?.base_experience.toString()
-                peso.text=response.body()?.weight.toString()
-                altura.text=response.body()?.height.toString()
-
-                Log.i("SegundaTela",response.body().toString())
-
+                nome.text=response.body()?.name?.toUpperCase()
+                base.text=response.body()?.base_experience.toString()+" XP"
+                peso.text=response.body()?.weight.toString()+" hectograma(s)"
+                altura.text=response.body()?.height.toString()+" decímetro(s)"
             }
+        })
+
+        respostaPokemonAbility.enqueue(object:Callback<Ability>{
+            override fun onFailure(call: Call<Ability>, t: Throwable) {
+                Log.i("SegundaTela","erro ability: "+ t.message)
+            }
+
+            override fun onResponse(call: Call<Ability>, response: Response<Ability>) {
+                Log.i("SegundaTela",response.body().toString())
+            }
+
         })
     }
 }

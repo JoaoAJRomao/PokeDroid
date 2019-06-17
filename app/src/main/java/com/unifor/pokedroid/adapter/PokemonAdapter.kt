@@ -2,7 +2,6 @@ package com.unifor.pokedroid.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,23 +19,17 @@ class PokemonAdapter(val context: Context, val lista:List<GetListPokemon>): Recy
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): NamedViewHolder {
 
         val item = layoutInflater.inflate(R.layout.adapterlist_pokemon,p0,false)
-//        val item = LayoutInflater.from(p0.context).inflate(R.layout.adapterlist_pokemon,p0,false)
         return NamedViewHolder(item)
     }
 
-
-
     override fun onBindViewHolder(p0: NamedViewHolder, p1: Int) {
-        p0.nomePokemon.text=lista[p1].name
-//        Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+        p0.nomePokemon.text=lista[p1].name.toUpperCase()
         Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p1+1}.png").into(p0.imagemPokemon)
-        Log.i("MostraUrlPokemon",lista[p1].url)
     }
 
     override fun getItemCount(): Int {
         return lista.size
     }
-
 
     class NamedViewHolder(item:View):RecyclerView.ViewHolder(item){
         var nomePokemon: TextView = item.findViewById(R.id.nomePokemon)

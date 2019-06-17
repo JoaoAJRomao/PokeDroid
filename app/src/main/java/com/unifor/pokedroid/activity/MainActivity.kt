@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var pokemonService: PokemonService
     private lateinit var recyclerView: RecyclerView
-    val TAG = "POKEDEX"
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +58,6 @@ class MainActivity : AppCompatActivity() {
                             val chamaOutra = Intent(this@MainActivity,activity_pokemondetalhe::class.java)
                             chamaOutra.putExtra("uri",response.body()!!.listaDeRetorno[position].url )
                             chamaOutra.putExtra("posicao",position+1)
-//                            Log.i("MainActivity2",response.body()!!.listaDeRetorno[position].url)
                             startActivity(chamaOutra)
 
                         }

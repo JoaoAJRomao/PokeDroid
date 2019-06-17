@@ -1,5 +1,6 @@
 package com.unifor.pokedroid.service
 
+import com.unifor.pokedroid.model.Ability
 import com.unifor.pokedroid.model.Named
 import com.unifor.pokedroid.model.Pokemon
 import retrofit2.Call
@@ -14,5 +15,6 @@ interface PokemonService {
     @GET("pokemon/{id}/")
     fun getPokemonById(@Path("id") id: Int): Call<Pokemon>
 
-//    @GET("")
+    @GET("ability/{id}")
+    fun getPokemonAbilityById(@Path("id") id: Int): Call<Ability>
 }
