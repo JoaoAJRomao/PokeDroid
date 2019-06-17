@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 import com.unifor.pokedroid.R
 import com.unifor.pokedroid.model.GetListPokemon
 
@@ -27,6 +28,8 @@ class PokemonAdapter(val context: Context, val lista:List<GetListPokemon>): Recy
 
     override fun onBindViewHolder(p0: NamedViewHolder, p1: Int) {
         p0.nomePokemon.text=lista[p1].name
+//        Picasso.get().load("http://i.imgur.com/DvpvklR.png").into(imageView);
+        Picasso.get().load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p1+1}.png").into(p0.imagemPokemon)
         Log.i("MostraUrlPokemon",lista[p1].url)
     }
 
